@@ -143,6 +143,7 @@ const [showTemplate, SetShowTemplate] = useState(false)
     </div>
 
 <h1 className='text-2xl font-semibold text-start'>Educational History</h1>
+<hr className='w-full h-[1px] bg-gray-500' />
 
 <div className="div1 flex gap-4 items-center ">
     <div className='flex flex-col gap-1 '>
@@ -190,6 +191,8 @@ const [showTemplate, SetShowTemplate] = useState(false)
     <p className=' text-emerald-600 text-sm '>Add Education</p>
 </div>
 <h1 className='text-2xl font-semibold text-start'>Work Experience</h1>
+<hr className='w-full h-[1px] bg-gray-500' />
+
 <div className="div1 flex gap-4 items-center ">
     <div className='flex flex-col gap-1 '>
     <label htmlFor="" className='font-semibold'>Name of Organization</label>
@@ -222,6 +225,8 @@ const [showTemplate, SetShowTemplate] = useState(false)
     <p className='  text-emerald-600 text-sm '>Add Work</p>
 </div>
 <h1 className='text-2xl font-semibold text-start'>Referees</h1>
+<hr className='w-full h-[1px] bg-gray-500' />
+
 <div className="div1 flex gap-4 items-center ">
     <div className='flex flex-col gap-1 '>
     <label htmlFor="" className='font-semibold'>Full Name</label>
@@ -253,13 +258,19 @@ const [showTemplate, SetShowTemplate] = useState(false)
 
 </form> 
 </div>
-<GeneratedResume showTemplate={showTemplate} formData={formData}  />
-{/* {showTemplate &&(
-    <div className="div bg-green-500 p-2 border  ">
-    
-    </div>
-)
-} */}
+<div className="p-6 max-h-[80vh] overflow-y-auto">
+<GeneratedResume  showTemplate={showTemplate} 
+formData={formData} 
+onClose={() => SetShowTemplate(false)} 
+
+/>
+            </div>
+
+
+
+
+
+
     </div>
   )
 }
