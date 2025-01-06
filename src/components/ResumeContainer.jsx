@@ -1,276 +1,233 @@
 
+
 "use client"
 import { Plus } from 'lucide-react'
 import React, { useState } from 'react'
 import GeneratedResume from './GeneratedResume'
 
 const ResumeContainer = () => {
+  const [formData, setFormData] = useState({
+    firstname: "", lastname: "", job: "", about: "", birth: "", local: "",
+    origin: "", gender: "", status: "", religion: "", address: "", phone: "",
+    email: "", institute: "", typeinstitute: "", quali: "", started: "",
+    finished: "", check: "", Organization: "", position: "", location: "",
+    from: "", to: "", refereesname: "", refereesposition: "", refereesorg: "",
+    refereescontact: ""
+  })
 
- const [formData, setFormData] = useState({
-    firstname : "",
-    lastname:"",
-    job:"",
-    about: "",
-    birth:"",
-    local:"",
-    origin:"",
-    gender :"",
-    status: "",
-    religion:"",
-    address:"",
-    phone:"",
-    email:"",
-    institute:"",
-    typeinstitute:"",
-    quali:"",
-    started:"",
-    finished:"",
-    check:"",
-    Organization:"",
-    position:"",
-    location:"",
-    from:"",
-    to:"",
-    refereesname:"",
-    refereesposition:"",
-    refereesorg:"",
-    refereescontact:"",
- })
-const [showTemplate, SetShowTemplate] = useState(false)
- const handleInputChange = (e)=>{
+  const [showTemplate, setShowTemplate] = useState(false)
 
-    // const {name, value} = e.tatget.value;
-    // setFormData(prev => ({
-    //     ...prev,
-    //     [name] : value
-    // }))
-    const { name, value } = e.target;
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }));
-    console.log(name)
- }
+  }
 
- const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    SetShowTemplate(true)
-    console.log("got it")
+    setShowTemplate(true)
+  }
 
- }
+  const InputField = ({ label, name, type = "text", placeholder = "", options = [] }) => (
+    <div className='flex flex-col gap-1 w-full'>
+      <label className='font-semibold'>{label}</label>
+      {type === "select" ? (
+        <select 
+          name={name}
+          value={formData[name]}
+          onChange={handleInputChange}
+          className='border rounded-md p-2 outline-none bg-slate-50 w-full'
+        >
+          <option value="Choose">Choose</option>
+          {options.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      ) : (
+        <input 
+          type={type}
+          name={name}
+          value={formData[name]}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+          className='border rounded-md p-2 outline-none bg-slate-50 w-full'
+        />
+      )}
+    </div>
+  )
 
-  return (   
-    <div className='shadow-2xl border shadow-slate-100 p-10'>
-        <div className="container">
-<h1 className='text-2xl font-semibold text-start'>Profile Information</h1>
-<form action=""  className='mt-4 flex flex-col gap-3 ' onSubmit={handleSubmit}>
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>First name</label>
-    <input type="text" name="firstname" value={formData.firstname} onChange={handleInputChange} id="" placeholder='e.g John'  className='border rounded-md w-[230px] p-2 outline-none bg-slate-50'/>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Last name</label>
-    <input type="text" name="lastname" id="" value={formData.lastname} onChange={handleInputChange} placeholder='e.g Doe' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Job title</label>
-    <input type="text" name="job" id="" value={formData.job} onChange={handleInputChange} placeholder='e.g Web Developer' className='border w-[230px] rounded-md p-2 outline-none bg-slate-50' />
-    </div>
-</div>
-<label htmlFor="" className='font-semibold'>Say a little bit about yourself</label>
-<input type="text" name="about" id="" value={formData.about} onChange={handleInputChange} placeholder='e.g:a self motivated... ' className='border rounded-md p-4 outline-none bg-slate-50'   />
-<hr  className='w-full h-1'/>
+  const AddButton = ({ text }) => (
+    <button className="plus text-emerald-700 flex gap-1 items-center border border-emerald-700 rounded-md p-1 w-max hover:bg-emerald-50">
+      <Plus />
+      <p className='text-emerald-600 text-sm'>Add {text}</p>
+    </button>
+  )
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Date of birth</label>
-    <input type="date" name="birth" id="" placeholder='mm/dd/yyyy' value={formData.birth} onChange={handleInputChange}  className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'/>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>State of Origin</label>
-    <input type="text" name="origin" id="" placeholder='e.g lagos' value={formData.origin} onChange={handleInputChange} className='border w-[230px] rounded-md p-2 outline-none bg-slate-50' />
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>LGA</label>
-    <input type="text" name="local" id="" placeholder='e.g Badagry' value={formData.local} onChange={handleInputChange} className='w-[230px] border rounded-md p-2 outline-none bg-slate-50' />
-    </div>
-</div>
+  const SectionTitle = ({ title }) => (
+    <>
+      <h1 className='text-xl md:text-2xl font-semibold text-start mt-6'>{title}</h1>
+      <hr className='w-full h-[1px] bg-gray-500'/>
+    </>
+  )
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Gender</label>
-    <select name="gender" id="" value={formData.gender} onChange={handleInputChange} className='border  w-[230px] rounded-md p-2 outline-none bg-slate-50'>
-        <option value="Choose" >Choose</option>
-<option value="Male">Male</option>
-<option value="female">female</option>
-    </select>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Marital Status</label>
-    <select name="status" id="" value={formData.status} onChange={handleInputChange} className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'>
-        <option value="Choose" >Choose</option>
-<option value="Male">Married</option>
-<option value="female">Single</option>
-    </select>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Religion</label>
-    <select name="religion" id="" onChange={handleInputChange} value={formData.religion} className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'>
-        <option value="Choose" >Choose</option>
-<option value="Male">Islam</option>
-<option value="female">Christianity</option>
-    </select>
+  return (
+    <div className='shadow-2xl border shadow-slate-100 p-4 md:p-6 lg:p-10 w-full max-w-7xl mx-auto'>
+      <div className="w-full">
+        <h1 className='text-xl md:text-2xl font-semibold text-start'>Profile Information</h1>
+        <form className='mt-4 flex flex-col gap-3 w-full' onSubmit={handleSubmit}>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            <InputField label="First name" name="firstname" placeholder="e.g John" />
+            <InputField label="Last name" name="lastname" placeholder="e.g Doe" />
+            <InputField label="Job title" name="job" placeholder="e.g Web Developer" />
+          </div>
 
-    </div>
-</div>
+          <InputField 
+            label="About yourself" 
+            name="about" 
+            placeholder="e.g: a self motivated..."
+          />
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Address</label>
-    <input type="text" name="address" id="" value={formData.address} onChange={handleInputChange} placeholder='e.g:123 areola street'  className='border rounded-md w-[500px] p-2 outline-none bg-slate-50'/>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Phone</label>
-    <input type="number" name="phone" id="" onChange={handleInputChange} value={formData.phone} placeholder='e.g:09078542345' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
-    </div>
+          <hr className='w-full h-1'/>
 
-</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            <InputField label="Date of birth" name="birth" type="date" />
+            <InputField label="State of Origin" name="origin" placeholder="e.g lagos" />
+            <InputField label="LGA" name="local" placeholder="e.g Badagry" />
+          </div>
 
-<div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Email</label>
-    <input type="email" name="email" id="" value={formData.email} onChange={handleInputChange} placeholder='johndoe@gmail.com'  className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'/>
-    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            <InputField 
+              label="Gender" 
+              name="gender" 
+              type="select" 
+              options={[
+                { value: "Male", label: "Male" },
+                { value: "Female", label: "Female" }
+              ]}
+            />
+            <InputField 
+              label="Marital Status" 
+              name="status" 
+              type="select" 
+              options={[
+                { value: "Married", label: "Married" },
+                { value: "Single", label: "Single" }
+              ]}
+            />
+            <InputField 
+              label="Religion" 
+              name="religion" 
+              type="select" 
+              options={[
+                { value: "Islam", label: "Islam" },
+                { value: "Christianity", label: "Christianity" }
+              ]}
+            />
+          </div>
 
-<h1 className='text-2xl font-semibold text-start'>Educational History</h1>
-<hr className='w-full h-[1px] bg-gray-500' />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <InputField label="Address" name="address" placeholder="e.g:123 areola street" />
+            <InputField label="Phone" name="phone" type="number" placeholder="e.g:09078542345" />
+          </div>
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Name of Institute</label>
-    <input type="text" name="institute" id="" value={formData.institute} onChange={handleInputChange} placeholder='e.g:Lagos state university'  className='border rounded-md w-[500px] p-2 outline-none bg-slate-50'/>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Location</label>
-    <input type="text" name="location" id="" value={formData.location} onChange={handleInputChange} placeholder='e.g:Lagos' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
-    </div>
-</div>
+          <div className='w-full md:w-1/2'>
+            <InputField label="Email" name="email" type="email" placeholder="johndoe@gmail.com" />
+          </div>
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Type of Institute</label>
-    <select name="typeinstitute" id="" value={formData.typeinstitute} onChange={handleInputChange} className='border  w-[230px] rounded-md p-2 outline-none bg-slate-50'>
-        <option value="Choose" >Choose</option>
-<option value="Male">Tetiary</option>
-<option value="female">female</option>
-    </select>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Qualification Obtained</label>
-    <select name="quali" id="" value={formData.quali} onChange={handleInputChange} className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'>
-        <option value="Choose" >Choose</option>
-<option value="Bsc">Bsc</option>
-<option value="OND">OND</option>
-    </select>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Started When</label>
-    <input type="date" name="started" id="" value={formData.started} onChange={handleInputChange} placeholder='mm/dd/yyyy'  className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'/>
-    </div>
-</div>
-<div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Finished When</label>
-    <input type="date" name="finished" id="" value={formData.finished} onChange={handleInputChange} placeholder='mm/dd/yyyy'  className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'/>
-    </div>
-<div className="checkbox flex items-center gap-1">
-    <input type="checkbox" onChange={handleInputChange} value={formData.check} name="check" id="" />
-    <p className='text-gray-800'>I have not finished</p>
-</div>
-<div className="plus   text-emerald-700 flex gap-1 items-center border w-max  border-emerald-700 rounded-md p-1 ">
-    <Plus/>
-    <p className=' text-emerald-600 text-sm '>Add Education</p>
-</div>
-<h1 className='text-2xl font-semibold text-start'>Work Experience</h1>
-<hr className='w-full h-[1px] bg-gray-500' />
+          <SectionTitle title="Educational History" />
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Name of Organization</label>
-    <input type="text"  value={formData.Organization} onChange={handleInputChange} name="Organization" id="" placeholder='e.g:Solana'  className='border rounded-md w-[500px] p-2 outline-none bg-slate-50'/>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Position</label>
-    <input type="text" name="position" onChange={handleInputChange} value={formData.position} id="" placeholder='e.g:Sales Rep' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
-    </div>
-</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <InputField label="Name of Institute" name="institute" placeholder="e.g:Lagos state university" />
+            <InputField label="Location" name="location" placeholder="e.g:Lagos" />
+          </div>
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Location</label>
-    <input type="text" name="location" id="" value={formData.location} onChange={handleInputChange} placeholder='e.g:Lagos' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            <InputField 
+              label="Type of Institute" 
+              name="typeinstitute" 
+              type="select" 
+              options={[
+                { value: "Tertiary", label: "Tertiary" },
+                { value: "Secondary", label: "Secondary" }
+              ]}
+            />
+            <InputField 
+              label="Qualification Obtained" 
+              name="quali" 
+              type="select" 
+              options={[
+                { value: "Bsc", label: "BSc" },
+                { value: "OND", label: "OND" }
+              ]}
+            />
+            <InputField label="Started When" name="started" type="date" />
+          </div>
 
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>From When</label>
-    <input type="date" name="from" id="" value={formData.from} onChange={handleInputChange} placeholder='mm/dd/yyyy'  className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'/>
+          <div className='w-full md:w-1/3'>
+            <InputField label="Finished When" name="finished" type="date" />
+          </div>
 
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>To When</label>
-    <input type="date" name="to" id="" value={formData.to} onChange={handleInputChange} placeholder='mm/dd/yyyy'  className='border w-[230px] rounded-md p-2 outline-none bg-slate-50'/>
-    </div>
-</div>
-<div className="plus   text-emerald-700 flex gap-1 items-center border w-max  border-emerald-700 rounded-md p-1 ">
-    <Plus/>
-    <p className='  text-emerald-600 text-sm '>Add Work</p>
-</div>
-<h1 className='text-2xl font-semibold text-start'>Referees</h1>
-<hr className='w-full h-[1px] bg-gray-500' />
+          <div className="flex items-center gap-1">
+            <input 
+              type="checkbox" 
+              name="check" 
+              checked={formData.check} 
+              onChange={handleInputChange}
+              className="h-4 w-4"
+            />
+            <p className='text-gray-800'>I have not finished</p>
+          </div>
 
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Full Name</label>
-    <input type="text" value={formData.refereesname} onChange={handleInputChange} name="refereesname" id="" placeholder='e.g:Mrs Doe'  className='border rounded-md w-[500px] p-2 outline-none bg-slate-50'/>
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Organization</label>
-    <input type="text" name="refereesorg" value={formData.refereesorg} onChange={handleInputChange} id="" placeholder='e.g:Mrs Doe Designs ' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
-    </div>
-</div>
-<div className="div1 flex gap-4 items-center ">
-    <div className='flex flex-col gap-1 '>
-    <label htmlFor="" className='font-semibold'>Position</label>
-    <input type="text" name="refereesposition" value={formData.refereesposition} onChange={handleInputChange} id="" placeholder='e.g:Mrs Doe' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
+          <AddButton text="Education" />
 
-    </div>
-    <div className='flex flex-col gap-1'>
-    <label htmlFor="" className='font-semibold'>Contact</label>
-    <input type="text" name="refereescontact" value={formData.refereescontact} onChange={handleInputChange} id="" placeholder='e.g:Mrs Doe Contact' className='border rounded-md w-[230px] p-2 outline-none bg-slate-50' />
+          <SectionTitle title="Work Experience" />
 
-    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <InputField label="Name of Organization" name="Organization" placeholder="e.g:Solana" />
+            <InputField label="Position" name="position" placeholder="e.g:Sales Rep" />
+          </div>
 
-</div>
-<div className="plus   text-emerald-700 flex gap-1 items-center border w-max  border-emerald-700 rounded-md p-1 ">
-    <Plus/>
-    <p className='  text-emerald-600 text-sm '>Add Referees</p>
-</div>
-<button type="submit"  className='border font-semibold text-xl rounded-md w-full mt-5 p-2 outline-none bg-purple-600 hover:bg-purple-700 text-white' >Continue</button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            <InputField label="Location" name="location" placeholder="e.g:Lagos" />
+            <InputField label="From When" name="from" type="date" />
+            <InputField label="To When" name="to" type="date" />
+          </div>
 
-</form> 
-</div>
-<div className="p-6 max-h-[80vh] overflow-y-auto">
-<GeneratedResume  showTemplate={showTemplate} 
-formData={formData} 
-onClose={() => SetShowTemplate(false)} 
+          <AddButton text="Work" />
 
-/>
-            </div>
+          <SectionTitle title="Referees" />
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <InputField label="Full Name" name="refereesname" placeholder="e.g:Mrs Doe" />
+            <InputField label="Organization" name="refereesorg" placeholder="e.g:Mrs Doe Designs" />
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <InputField label="Position" name="refereesposition" placeholder="e.g:Manager" />
+            <InputField label="Contact" name="refereescontact" placeholder="e.g:Contact details" />
+          </div>
 
+          <AddButton text="Referees" />
 
+          <button 
+            type="submit" 
+            className='border font-semibold text-xl rounded-md w-full mt-5 p-2 outline-none bg-purple-600 hover:bg-purple-700 text-white'
+          >
+            Continue
+          </button>
+        </form>
+      </div>
 
-
+      <div className="p-6 max-h-[80vh] overflow-y-auto">
+        <GeneratedResume  
+          showTemplate={showTemplate} 
+          formData={formData} 
+          onClose={() => setShowTemplate(false)} 
+        />
+      </div>
     </div>
   )
 }
