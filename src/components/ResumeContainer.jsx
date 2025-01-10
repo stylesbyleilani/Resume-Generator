@@ -206,7 +206,7 @@ const ResumeContainer = () => {
   );
 
   return (
-    <div className="shadow-2xl border shadow-slate-100 p-4 md:p-6 lg:p-10 w-[380px] md:w-full max-w-7xl mx-auto">
+    <div className="shadow-2xl border shadow-slate-100 p-4 md:p-6 lg:p-10 w-full md:w-full max-w-7xl mx-auto">
       <div className="w-full">
         <h1 className="text-xl md:text-2xl font-semibold text-start">
           Profile Information

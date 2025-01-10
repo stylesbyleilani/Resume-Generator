@@ -78,90 +78,106 @@ const GeneratedResume = ({
   };
 
   const Template1 = () => (
-    <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-1 text-black">{formData.firstname} {formData.lastname}</h1>
-        <div className="text-sm space-y-1">
-          <p className="text-black">Email: {formData.email}</p>
-          <p className="text-black">Phone: {formData.phone}</p>
-          <p className="text-black">Address: {formData.address}</p>
-        </div>
-      </div>
+<div className="w-full min-h-[600px] p-8 mt-3 md:mt-0  bg-white">
 
-      <div className="space-y-4">
-        <section>
-          <h2 className="text-lg font-bold mb-2 text-black">Summary</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
-          <p className="text-sm mt-1 text-black leading-relaxed">{formData.about}</p>
-        </section>
 
-        <section>
-          <h2 className="text-lg font-bold mb-2 text-black">Experience</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
-          {experienceData.map((exp, index) => (
-            exp.Organization && (
-              <div key={index} className="mt-2">
-                <div className="flex justify-between text-sm">
-                  <p className="font-bold text-black">{exp.Organization}</p>
-                </div>
-                <p className="text-sm italic text-black">{exp.position}</p>
-                <p className="text-black mt-1">{exp.from} – {exp.to}</p>
-              </div>
-            )
-          ))}
-        </section>
+<div className="mb-6">
+  <h1 className="text-2xl font-bold mb-1 text-black">{formData.firstname} {formData.lastname}</h1>
+  <div className="text-sm space-y-1">
+    <p className="text-black">Email: {formData.email}</p>
+    <p className="text-black">Phone: {formData.phone}</p>
+    <p className="text-black">Address: {formData.address}</p>
+  </div>
+</div>
 
-        <section>
-          <h2 className="text-lg font-bold mb-2 text-black">Education</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
-          {educationData.map((edu, index) => (
-            edu.institute && (
-              <div key={index} className="mt-2">
-                <div className="flex justify-between text-sm">
-                  <p className="font-bold text-black">{edu.institute}</p>
-                </div>
-                <p className="text-sm text-black">{edu.quali}</p>
-                <p className="text-black mt-1">
-                  {edu.started} – {edu.check ? 'Present' : edu.finished}
-                </p>
-              </div>
-            )
-          ))}
-        </section>
-
-        <section>
-          <h2 className="text-lg font-bold mb-2 text-black">Skills</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
-          <ul className="list-disc pl-4 mt-2">
-            {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
-              .filter(skill => skill)
-              .map((skill, index) => (
-                <li key={index} className="text-black">{skill}</li>
-              ))}
-          </ul>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-bold mb-2 text-black">References</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
-          {refereesData.map((ref, index) => (
-            ref.refereesname && (
-              <div key={index} className="text-sm mt-2">
-                <p className="font-bold text-black">{ref.refereesname}</p>
-                <p className="text-black">{ref.refereesposition}</p>
-                <p className="text-black">{ref.refereesorg}</p>
-                <p className="text-black">{ref.refereescontact}</p>
-              </div>
-            )
-          ))}
-        </section>
-      </div>
+<div className="space-y-4">
+  <section className="w-full">
+    <h2 className="text-lg font-bold mb-2 text-black">Summary</h2>
+    <div className="md:w-full w-[310px] sm:w-[530px] max-w-full">
+      <hr className="border-gray-700 my-2" />
     </div>
-  );
+    <p className="text-sm mt-1 text-black leading-relaxed">{formData.about}</p>
+  </section>
+
+  <section className="w-full">
+    <h2 className="text-lg font-bold mb-2 text-black">Experience</h2>
+    <div className="w-full max-w-full">
+      <hr className="border-gray-700 my-2" />
+    </div>
+    {experienceData.map((exp, index) => (
+      exp.Organization && (
+        <div key={index} className="mt-2">
+          <div className="flex justify-between text-sm">
+            <p className="font-bold text-black">{exp.Organization}</p>
+          </div>
+          <p className="text-sm  text-black">{exp.position}</p>
+          <p className="text-black mt-1">{exp.from} – {exp.to}</p>
+        </div>
+      )
+    ))}
+  </section>
+
+  <section className="w-full">
+    <h2 className="text-lg font-bold mb-2 text-black">Education</h2>
+    <div className="w-full max-w-full">
+      <hr className="border-gray-700 my-2" />
+    </div>
+    {educationData.map((edu, index) => (
+      edu.institute && (
+        <div key={index} className="mt-2">
+          <div className="flex justify-between text-sm">
+            <p className="font-bold text-black">{edu.institute}</p>
+          </div>
+          <p className="text-sm text-black">{edu.quali}</p>
+          <p className="text-black mt-1">
+            {edu.started} – {edu.check ? 'Present' : edu.finished}
+          </p>
+        </div>
+      )
+    ))}
+  </section>
+
+  <section className="w-full">
+    <h2 className="text-lg font-bold mb-2 text-black">Skills</h2>
+    <div className="w-full max-w-full">
+      <hr className="border-gray-700 my-2" />
+    </div>
+    <ul className="list-disc pl-4 mt-2">
+      {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+        .filter(skill => skill)
+        .map((skill, index) => (
+          <li key={index} className="text-black">{skill}</li>
+        ))}
+    </ul>
+  </section>
+
+  <section className="w-full">
+    <h2 className="text-lg font-bold mb-2 text-black">References</h2>
+    <div className="w-full max-w-full">
+      <hr className="border-gray-700 my-2" />
+    </div>
+    {refereesData.map((ref, index) => (
+      ref.refereesname && (
+        <div key={index} className="text-sm mt-2">
+          <p className="font-bold text-black">{ref.refereesname}</p>
+          <p className="text-black">{ref.refereesposition}</p>
+          <p className="text-black">{ref.refereesorg}</p>
+          <p className="text-black">{ref.refereescontact}</p>
+        </div>
+      )
+    ))}
+  </section>
+</div>
+</div>
+);
+
+
 
 
   const Template2 = () => (
-    <div className="w-full min-h-[600px] p-8 bg-white">
+  
+
+    <div className="w-full min-h-[600px] p-8 mt-3 md:mt-0  bg-white">
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold mb-2">{formData.firstname} {formData.lastname}</h1>
         <div className="text-[11px] ">
@@ -221,7 +237,7 @@ const GeneratedResume = ({
      
         <section>
           <h2 className="text-sm font-bold mb-2 uppercase text-black">Skills</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          <div className="bg-gray-700 mt-1 overflow-hidden h-[0.60px] w-full"></div>
           <ul className="list-disc pl-4 mt-2">
             {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
               .filter(skill => skill)
@@ -252,7 +268,7 @@ const GeneratedResume = ({
 
 
   const Template3 = () => (
-    <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+    <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 mt-3 md:mt-0 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
 
 
 <div className="mb-6">
@@ -303,9 +319,12 @@ const GeneratedResume = ({
 
         </section>
 
-        <section>
-          <h2 className="text-base font-bold text-black mb-3 uppercase">Skills</h2>
-          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+
+
+
+<section>
+          <h2 className="text-sm font-bold mb-2 uppercase text-black">Skills</h2>
+
           <ul className="list-disc pl-4 mt-2">
             {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
               .filter(skill => skill)
@@ -316,7 +335,7 @@ const GeneratedResume = ({
         </section>
 
         <section className="mb-6">
-          <h2 className="text-base font-bold text-black mb-3 uppercase">References</h2>
+          <h2 className="text-base font-bold text-black mb-3  uppercase">References</h2>
           {refereesData.map((ref, index) => (
             ref.refereesname && (
               <div key={index} className="text-sm mt-2">
@@ -359,15 +378,15 @@ const GeneratedResume = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 p-6">
           {Object.keys(templates).map((templateNum) => (
             <div 
               key={templateNum}
-              className="relative cursor-pointer transition-all hover:scale-105 border border-gray-200"
+              className="relative cursor-pointer transition-all hover:scale-95 md:hover:scale-105 border border-gray-200"
               onClick={() => handleTemplateSelect(Number(templateNum))}
             >
               {selectedTemplate === Number(templateNum) && (
-                <div className="absolute top-2 right-2 bg-gray-500 rounded-full p-1 z-10">
+                <div className="absolute top-2 right-2 bg-purple-600 rounded-full p-1 z-10">
                   <Check className="w-4 h-4 text-white" />
                 </div>
               )}
