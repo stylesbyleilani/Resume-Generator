@@ -1,27 +1,4 @@
-// import Link from 'next/link'
-// import React from 'react'
-// import Resume from './Resume'
 
-// const HomePage = () => {
-//   return (
-//     <div className=' flex items-center justify-center  flex-col font-semibold  '>
-//         <div className="div mt-52 p-5">
-//         <h1 className='text-3xl text-center '>Build professional resume for free</h1>
-//         <p>Create your resume easily with our free builder and professional templates</p>
-//         <Link href="/resume" >
-
-//         <button 
-//             className='border -semibold text-xl rounded-md w-full mt-5 p-2 outline-none bg-[rgba(80,25,151,0.99)] hover:bg-purple-700 text-white'
-//           >
-//             Create my resume
-//           </button>
-//         </Link>
-//         </div>
-//     </div>
-//   )
-// }
-
-// export default HomePage
 
 
 
