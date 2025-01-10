@@ -3,233 +3,707 @@
 
 
 
+// // // add welcome page
+// // // package to make it downloadable in pdf format
+// // //optimize the templates
+// // // work on the buttons to add more details, like work, education, refrees
+// // // add required to the inputs also add github and portfolio input but don't make them required
+// // //user should get downloading state after clicking on prefered template
 
-import React from 'react';
+
+
+
+
+// import React, { useRef } from 'react';
+// import { Check } from 'lucide-react';
+
+// const GeneratedResume = ({ showTemplate, formData, onClose }) => {
+//   if (!showTemplate) return null;
+
+//   const [selectedTemplate, setSelectedTemplate] = React.useState(1);
+//   const [isDownloading, setIsDownloading] = React.useState(false);
+//   const templateRef = useRef(null);
+
+//   const handleTemplateSelect = (templateNumber) => {
+//     setSelectedTemplate(templateNumber);
+//   };
+
+//   const handleDownloadPDF = async () => {
+//     setIsDownloading(true);
+//     try {
+//       const { jsPDF } = await import('jspdf');
+//       const html2canvas = (await import('html2canvas')).default;
+
+//       const template = templateRef.current;
+      
+//       const scale = 2;
+//       const canvas = await html2canvas(template, {
+//         scale: scale,
+//         logging: false,
+//         useCORS: true,
+//         allowTaint: true,
+//         backgroundColor: '#ffffff',
+//         windowWidth: template.scrollWidth,
+//         windowHeight: template.scrollHeight,
+//         onclone: (document) => {
+//           const el = document.querySelector('#template-to-print');
+//           if (el) {
+//             el.style.padding = '20px';
+//             el.style.margin = '0';
+//           }
+//         }
+//       });
+
+//       const imgData = canvas.toDataURL('image/jpeg', 1.0);
+//       const pdf = new jsPDF({
+//         orientation: 'portrait',
+//         unit: 'pt',
+//         format: 'a4'
+//       });
+
+//       const pdfWidth = pdf.internal.pageSize.getWidth();
+//       const pdfHeight = pdf.internal.pageSize.getHeight();
+//       const aspectRatio = canvas.width / canvas.height;
+      
+//       let imgWidth = pdfWidth;
+//       let imgHeight = pdfWidth / aspectRatio;
+
+//       if (imgHeight > pdfHeight) {
+//         imgHeight = pdfHeight;
+//         imgWidth = imgHeight * aspectRatio;
+//       }
+
+//       const x = (pdfWidth - imgWidth) / 2;
+//       const y = (pdfHeight - imgHeight) / 2;
+
+//       pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+//       pdf.save(`${formData.firstname}_${formData.lastname}_resume.pdf`);
+//     } catch (error) {
+//       console.error('Error generating PDF:', error);
+//     } finally {
+//       setIsDownloading(false);
+//     }
+//   };
+
+//   // Template 1 - Classic Left-Aligned
+//   const Template1 = () => (
+//     <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+//       <div className="mb-6">
+//         <h1 className="text-2xl font-bold mb-1 text-black">{formData.firstname} {formData.lastname}</h1>
+//         <div className="text-sm space-y-1">
+//           <p className="text-black">Email: {formData.email}</p>
+//           <p className="text-black">Phone: {formData.phone}</p>
+//           <p className="text-black">Address: {formData.address}</p>
+//         </div>
+//       </div>
+
+//       <div className="space-y-4">
+//         <section>
+//           <h2 className="text-lg font-bold mb-2  text-black">Summary</h2>
+//           <div className='bg-gray-700 mt-1 h-[0.60px] w-full '></div>
+
+//           <p className="text-sm mt-1 text-black leading-relaxed">{formData.about}</p>
+//         </section>
+
+//         <section>
+//           <h2 className="text-lg font-bold mb-2  text-black">Experience</h2>
+//           <div className='bg-gray-700 mt-1 h-[0.60px] w-full '></div>
+//           <div className="mt-2">
+//             <div className="flex justify-between text-sm">
+//               <p className="font-bold text-black">{formData.Organization}</p>
+//               {/* <p className="text-black">{formData.from} – {formData.to}</p> */}
+//             </div>
+//             <p className="text-sm italic text-black">{formData.position}</p>
+//             <p className="text-black  mt-1">{formData.from} – {formData.to}</p>
+
+//           </div>
+//         </section>
+
+//         <section>
+//           <h2 className="text-lg font-bold mb-2  text-black">Education</h2>
+//           <div className='bg-gray-700 mt-1 h-[0.60px] w-full '></div>
+
+//           <div className="mt-2">
+//             <div className="flex justify-between text-sm">
+//               <p className="font-bold text-black">{formData.institute}</p>
+//             </div>
+//             <p className="text-sm text-black">{formData.quali}</p>
+//             <p className="text-black  mt-1">{formData.started} – {formData.finished}</p>
+
+//           </div>
+//         </section>
+
+//         <section>
+//           <h2 className="text-lg font-bold mb-2  text-black">References</h2>
+//           <div className='bg-gray-700 mt-1 h-[0.60px] w-full '></div>
+
+//           <div className="text-sm">
+//             <p className="font-bold text-black">{formData.refereesname}</p>
+//             <p className="text-black">{formData.refereesposition}</p>
+//             <p className="text-black">{formData.refereesorg}</p>
+//             <p className="text-black">{formData.refereescontact}</p>
+//           </div>
+//         </section>
+//       </div>
+//     </div>
+//   );
+
+//   // Template 2 - Centered Header with Borders
+
+  // const Template2 = () => (
+  //   <div className="w-full min-h-[600px] p-8 bg-white">
+  //     <div className="text-center mb-6">
+  //       <h1 className="text-2xl font-bold mb-2">{formData.firstname} {formData.lastname}</h1>
+  //       <div className="text-[11px] ">
+  //         <p>{formData.email} • {formData.phone}</p>
+  //         <p>{formData.address}</p>
+  //       </div>
+  //     </div>
+
+  //     <div className="space-y-4">
+  //       <section>
+  //         <h2 className="text-sm font-bold uppercase mb-2">Professional Summary</h2>
+  //         <div className="border-t border-b border-black py-2">
+  //           <p className="text-[13px] ">{formData.about}</p>
+  //         </div>
+  //       </section>
+
+  //       <section>
+  //         <h2 className="text-sm font-bold uppercase mb-2">Work Experience</h2>
+  //         <div className="border-t border-b border-black py-2">
+            
+  //         <div className="text-sm">
+  //           <p className="font-semibold text-black">{formData.Organization}</p>
+  //           <p className="text-black mt-1">{formData.position}</p>
+  //           <p className="text-black text-[10px] mt-1">{formData.from} – {formData.to}</p>
+  //         </div>
+
+
+
+  //         </div>
+  //       </section>
+
+  //       <section>
+  //         <h2 className="text-sm font-bold uppercase mb-2">Education</h2>
+  //         <div className="border-t border-b border-black py-2">
+  //         <div className="text-sm">
+  //           <p className="font-bold text-black">{formData.institute}</p>
+  //           <p className="text-black mt-1  ">{formData.quali}</p>
+  //           <p className="text-black text-[10px] mt-1">{formData.started} – {formData.finished}</p>
+  //         </div>
+
+  //         </div>
+  //       </section>
+
+
+
+
+  //       <section>
+  //         <h2 className="text-sm font-bold uppercase mb-2">References</h2>
+  //         <div className="border-t border-b border-black py-2">
+  //           <div className="text-sm">
+  //             <p className="font-bold">{formData.refereesname}</p>
+  //             <p>{formData.refereesposition}</p>
+  //             <p>{formData.refereesorg}</p>
+  //             <p>{formData.refereescontact}</p>
+  //           </div>
+  //         </div>
+  //       </section>
+  //     </div>
+  //   </div>
+  // );
+
+
+
+
+//   //
+
+//   // Template 3 - Traditional with Header Line
+//   const Template3 = () => (
+//     <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+//       {/* <div className="mb-8">
+//         <h1 className="text-2xl font-bold text-center mb-4 text-black">{formData.firstname} {formData.lastname}</h1>
+//         <div className="text-sm flex justify-between border-t border-b border-black py-3">
+//           <p className="text-black">{formData.email}</p>
+//           <p className="text-black">{formData.phone}</p>
+//           <p className="text-black">{formData.address}</p>
+//         </div>
+//       </div> */}
+
+// <div className="mb-6">
+//         <h1 className="text-2xl font-bold mb-1 text-black">{formData.firstname} {formData.lastname}</h1>
+//         <div className="text-sm space-y-1">
+//           <p className="text-black">Email: {formData.email}</p>
+//           <p className="text-black">Phone: {formData.phone}</p>
+//           <p className="text-black">Address: {formData.address}</p>
+//         </div>
+//       </div>
+
+//       <div className="space-y-6">
+//         <section className="mb-6">
+//           <h2 className="text-base font-bold text-black mb-3 uppercase">Objective</h2>
+//           <p className="text-sm text-black leading-relaxed">{formData.about}</p>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-base font-bold text-black mb-3 uppercase">Professional Experience</h2>
+//           <div className="text-sm">
+//             <p className="font-bold text-black">{formData.Organization}</p>
+//             <p className="text-black mt-1">{formData.position}</p>
+//             <p className="text-black italic mt-1">{formData.from} – {formData.to}</p>
+//           </div>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-base font-bold text-black mb-3 uppercase">Education</h2>
+//           <div className="text-sm">
+//             <p className="font-bold text-black">{formData.institute}</p>
+//             <p className="text-black mt-1">{formData.quali}</p>
+//             <p className="text-black italic mt-1">{formData.started} – {formData.finished}</p>
+//           </div>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-base font-bold text-black mb-3 uppercase">Skills</h2>
+//           <div className="text-sm">
+//             <li className=" text-black">{formData.skill}</li>
+//             <li className=" text-black">{formData.skill2}</li>
+//             <li className=" text-black">{formData.skill3}</li>
+//             <li className=" text-black">{formData.skill4}</li>
+//             <li className=" text-black">{formData.skill5}</li>
+
+//             <p className="text-black mt-1">{formData.quali}</p>
+//             <p className="text-black italic mt-1">{formData.started} – {formData.finished}</p>
+//           </div>
+//         </section>
+
+//         <section className="mb-6">
+//           <h2 className="text-base font-bold text-black mb-3 uppercase">References</h2>
+//           <div className="text-sm">
+//             <p className="font-bold text-black">{formData.refereesname}</p>
+//             <p className="text-black mt-1">{formData.refereesposition}</p>
+//             <p className="text-black mt-1">{formData.refereesorg}</p>
+//             <p className="text-black mt-1">{formData.refereescontact}</p>
+//           </div>
+//         </section>
+//       </div>
+//     </div>
+//   );
+
+//   const templates = {
+//     1: Template1,
+//     2: Template2,
+//     3: Template3
+//   };
+
+//   const SelectedTemplate = templates[selectedTemplate];
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 bg-black bg-opacity-50">
+//       <div className="relative w-full max-w-7xl bg-white rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
+//         <div className="sticky top-0 z-10 bg-white flex items-center justify-between p-4 border-b">
+//           <h2 className="text-xl font-semibold">Choose a template</h2>
+//           <button 
+//             onClick={onClose}
+//             className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+//           >
+//             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+//             </svg>
+//           </button>
+//         </div>
+
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+//           {[1, 2, 3].map((templateNum) => (
+//             <div 
+//               key={templateNum}
+//               className="relative cursor-pointer transition-all hover:scale-105 border border-gray-200"
+//               onClick={() => handleTemplateSelect(templateNum)}
+//             >
+//               {selectedTemplate === templateNum && (
+//                 <div className="absolute top-2 right-2 bg-gray-500 rounded-full p-1 z-10">
+//                   <Check className="w-4 h-4 text-white" />
+//                 </div>
+//               )}
+//               <div ref={templateNum === selectedTemplate ? templateRef : null}>
+//                 {templates[templateNum]()}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div className="sticky bottom-0 z-10 bg-white flex justify-center items-center gap-4 p-4 border-t">
+//           <button 
+//             onClick={handleDownloadPDF}
+//             disabled={isDownloading}
+//             className="bg-gray-800 hover:bg-gray-900 text-white text-lg font-medium px-8 py-3 rounded-md transition-colors disabled:bg-gray-300"
+//           >
+//             {isDownloading ? 'Generating PDF...' : 'Download PDF'}
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default GeneratedResume;
+
+
+
+
+import React, { useRef } from 'react';
 import { Check } from 'lucide-react';
 
-const GeneratedResume = ({ showTemplate, formData, onClose, onSelectTemplate }) => {
+const GeneratedResume = ({ 
+  showTemplate, 
+  formData, 
+  educationData, 
+  experienceData, 
+  refereesData, 
+  onClose 
+}) => {
   if (!showTemplate) return null;
 
   const [selectedTemplate, setSelectedTemplate] = React.useState(1);
+  const [isDownloading, setIsDownloading] = React.useState(false);
+  const templateRef = useRef(null);
 
-  const handleTemplateSelect = React.useCallback((templateNumber) => {
+  const handleTemplateSelect = (templateNumber) => {
     setSelectedTemplate(templateNumber);
-  }, []);
-
-
-
-  const resumeTemplates = {
-    Template1: () => (
-      <div className="bg-white w-full border border-gray-600 scale-90 transform origin-top min-h-[600px]">
-        <div className="flex flex-col md:flex-row h-full">
-          <div className="w-full md:w-1/3 bg-gray-100 p-6">
-            <h1 className="font-semibold text-lg md:text-xl lg:text-2xl">{formData.firstname} {formData.lastname}</h1>
-            <span className="text-gray-600 text-sm md:text-base">{formData.job || 'Software Developer'}</span>
-            
-            {['Profile', 'Education', 'Experience', 'Reference'].map((section) => (
-              <div key={section} className="mt-6">
-                <h2 className="font-semibold text-base md:text-lg lg:text-xl">{section}</h2>
-                <div className="w-8 h-1 bg-black mb-2" />
-              </div>
-            ))}
-          </div>
-
-          <div className="w-full md:w-2/3 p-6 text-xs md:text-sm lg:text-base">
-            <div className="space-y-6">
-              <div className="space-y-1">
-                <p>{formData.address}</p>
-                <p>{formData.phone}</p>
-                <p>{formData.email}</p>
-              </div>
-
-              <div className="space-y-1">
-                {['birth', 'gender', 'origin', 'local', 'status', 'religion'].map((field) => (
-                  formData[field] && (
-                    <p key={field} className="text-gray-700">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}: {formData[field]}
-                    </p>
-                  )
-                ))}
-              </div>
-
-              <div className="space-y-1">
-                <p className="font-medium">{formData.institute}</p>
-                <p>{formData.quali}</p>
-                <p className="text-gray-600">{formData.started} - {formData.finished}</p>
-              </div>
-
-              <div className="space-y-1">
-                <p className="font-medium">{formData.Organization}</p>
-                <p>{formData.position}</p>
-                <p className="text-gray-600">{formData.from} - {formData.to}</p>
-              </div>
-
-              <div className="space-y-1">
-                <p className="font-medium">{formData.refereesname}</p>
-                <p>{formData.refereesposition}</p>
-                <p>{formData.refereesorg}</p>
-                <p>{formData.refereescontact}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-
-    Template2: () => (
-      <div className="bg-white w-full border border-gray-600 scale-90 transform origin-top min-h-[600px]">
-        <div className="p-6">
-          <div className="text-center mb-8">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2">{formData.firstname} {formData.lastname}</h1>
-            <p className="text-base md:text-lg lg:text-xl text-gray-600">{formData.job}</p>
-            <div className="flex flex-wrap justify-center gap-3 mt-2 text-xs md:text-sm">
-              <span>{formData.email}</span>
-              <span>•</span>
-              <span>{formData.phone}</span>
-              <span>•</span>
-              <span>{formData.address}</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm lg:text-base">
-            {[
-              {
-                title: 'Profile',
-                content: (
-                  <div className="space-y-2">
-                    <p>{formData.about}</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      <p>Birth: {formData.birth}</p>
-                      <p>Gender: {formData.gender}</p>
-                    </div>
-                  </div>
-                )
-              },
-              {
-                title: 'Education',
-                content: (
-                  <div className="space-y-1">
-                    <p className="font-medium">{formData.institute}</p>
-                    <p>{formData.quali}</p>
-                    <p className="text-gray-600">{formData.started} - {formData.finished}</p>
-                  </div>
-                )
-              },
-              {
-                title: 'Experience',
-                content: (
-                  <div className="space-y-1">
-                    <p className="font-medium">{formData.Organization}</p>
-                    <p>{formData.position}</p>
-                    <p className="text-gray-600">{formData.from} - {formData.to}</p>
-                  </div>
-                )
-              },
-              {
-                title: 'Reference',
-                content: (
-                  <div className="space-y-1">
-                    <p className="font-medium">{formData.refereesname}</p>
-                    <p>{formData.refereesposition}</p>
-                    <p>{formData.refereesorg}</p>
-                    <p>{formData.refereescontact}</p>
-                  </div>
-                )
-              }
-            ].map((section) => (
-              <section key={section.title} className="space-y-3">
-                <h2 className="text-lg md:text-xl font-bold border-b-2 border-gray-300 pb-1">{section.title}</h2>
-                {section.content}
-              </section>
-            ))}
-          </div>
-        </div>
-      </div>
-    ),
-
-    Template3: () => (
-      <div className="bg-white w-full border border-gray-600 scale-90 transform origin-top min-h-[600px]">
-        <div className="bg-blue-600 text-white p-6">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">{formData.firstname} {formData.lastname}</h1>
-          <p className="text-lg md:text-xl mt-2">{formData.job}</p>
-          <div className="flex flex-wrap gap-4 mt-4 text-xs md:text-sm">
-            <span>{formData.email}</span>
-            <span>{formData.phone}</span>
-            <span>{formData.address}</span>
-          </div>
-        </div>
-
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm lg:text-base">
-            {[
-              {
-                title: 'Profile',
-                content: (
-                  <div className="space-y-2">
-                    <p>{formData.about}</p>
-                    <div className="grid grid-cols-2 gap-2 text-gray-600">
-                      <p>Birth: {formData.birth}</p>
-                      <p>Gender: {formData.gender}</p>
-                      <p>Origin: {formData.origin}</p>
-                      <p>Local: {formData.local}</p>
-                    </div>
-                  </div>
-                )
-              },
-              {
-                title: 'Education',
-                content: (
-                  <div className="space-y-1">
-                    <p className="font-medium">{formData.institute}</p>
-                    <p>{formData.quali}</p>
-                    <p className="text-gray-600">{formData.started} - {formData.finished}</p>
-                  </div>
-                )
-              },
-              {
-                title: 'Experience',
-                content: (
-                  <div className="space-y-1">
-                    <p className="font-medium">{formData.Organization}</p>
-                    <p>{formData.position}</p>
-                    <p className="text-gray-600">{formData.from} - {formData.to}</p>
-                  </div>
-                )
-              },
-              {
-                title: 'Reference',
-                content: (
-                  <div className="space-y-1">
-                    <p className="font-medium">{formData.refereesname}</p>
-                    <p>{formData.refereesposition}</p>
-                    <p>{formData.refereesorg}</p>
-                    <p>{formData.refereescontact}</p>
-                  </div>
-                )
-              }
-            ].map((section) => (
-              <section key={section.title} className="space-y-3">
-                <h2 className="text-lg md:text-xl font-bold text-blue-600">{section.title}</h2>
-                <div className="border-l-4 border-blue-600 pl-4">
-                  {section.content}
-                </div>
-              </section>
-            ))}
-          </div>
-        </div>
-      </div>
-    )
   };
 
+  const handleDownloadPDF = async () => {
+    setIsDownloading(true);
+    try {
+      const { jsPDF } = await import('jspdf');
+      const html2canvas = (await import('html2canvas')).default;
+      const template = templateRef.current;
+      
+      const scale = 2;
+      const canvas = await html2canvas(template, {
+        scale: scale,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        windowWidth: template.scrollWidth,
+        windowHeight: template.scrollHeight,
+        onclone: (document) => {
+          const el = document.querySelector('#template-to-print');
+          if (el) {
+            el.style.padding = '20px';
+            el.style.margin = '0';
+          }
+        }
+      });
+
+      const imgData = canvas.toDataURL('image/jpeg', 1.0);
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'pt',
+        format: 'a4'
+      });
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const aspectRatio = canvas.width / canvas.height;
+      
+      let imgWidth = pdfWidth;
+      let imgHeight = pdfWidth / aspectRatio;
+
+      if (imgHeight > pdfHeight) {
+        imgHeight = pdfHeight;
+        imgWidth = imgHeight * aspectRatio;
+      }
+
+      const x = (pdfWidth - imgWidth) / 2;
+      const y = (pdfHeight - imgHeight) / 2;
+
+      pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+      pdf.save(`${formData.firstname}_${formData.lastname}_resume.pdf`);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  // Template 1 - Classic Left-Aligned
+  const Template1 = () => (
+    <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold mb-1 text-black">{formData.firstname} {formData.lastname}</h1>
+        <div className="text-sm space-y-1">
+          <p className="text-black">Email: {formData.email}</p>
+          <p className="text-black">Phone: {formData.phone}</p>
+          <p className="text-black">Address: {formData.address}</p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <section>
+          <h2 className="text-lg font-bold mb-2 text-black">Summary</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          <p className="text-sm mt-1 text-black leading-relaxed">{formData.about}</p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold mb-2 text-black">Experience</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          {experienceData.map((exp, index) => (
+            exp.Organization && (
+              <div key={index} className="mt-2">
+                <div className="flex justify-between text-sm">
+                  <p className="font-bold text-black">{exp.Organization}</p>
+                </div>
+                <p className="text-sm italic text-black">{exp.position}</p>
+                <p className="text-black mt-1">{exp.from} – {exp.to}</p>
+              </div>
+            )
+          ))}
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold mb-2 text-black">Education</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          {educationData.map((edu, index) => (
+            edu.institute && (
+              <div key={index} className="mt-2">
+                <div className="flex justify-between text-sm">
+                  <p className="font-bold text-black">{edu.institute}</p>
+                </div>
+                <p className="text-sm text-black">{edu.quali}</p>
+                <p className="text-black mt-1">
+                  {edu.started} – {edu.check ? 'Present' : edu.finished}
+                </p>
+              </div>
+            )
+          ))}
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold mb-2 text-black">Skills</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          <ul className="list-disc pl-4 mt-2">
+            {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+              .filter(skill => skill)
+              .map((skill, index) => (
+                <li key={index} className="text-black">{skill}</li>
+              ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold mb-2 text-black">References</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          {refereesData.map((ref, index) => (
+            ref.refereesname && (
+              <div key={index} className="text-sm mt-2">
+                <p className="font-bold text-black">{ref.refereesname}</p>
+                <p className="text-black">{ref.refereesposition}</p>
+                <p className="text-black">{ref.refereesorg}</p>
+                <p className="text-black">{ref.refereescontact}</p>
+              </div>
+            )
+          ))}
+        </section>
+      </div>
+    </div>
+  );
+
+
+  const Template2 = () => (
+    <div className="w-full min-h-[600px] p-8 bg-white">
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-bold mb-2">{formData.firstname} {formData.lastname}</h1>
+        <div className="text-[11px] ">
+          <p>{formData.email} • {formData.phone}</p>
+          <p>{formData.address}</p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <section>
+          <h2 className="text-sm font-bold uppercase mb-2">Professional Summary</h2>
+          <div className="border-t  py-2">
+            <p className="text-[13px] ">{formData.about}</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-sm font-bold uppercase mb-2">Work Experience</h2>
+          <div className="border-t  py-2">
+
+          {experienceData.map((exp, index) => (
+            exp.Organization && (
+              <div key={index} className="mt-2">
+                <div className="flex justify-between text-sm">
+                  <p className="font-bold text-black">{exp.Organization}</p>
+                </div>
+                <p className="text-sm  text-black">{exp.position}</p>
+                <p className="text-black mt-1">{exp.from} – {exp.to}</p>
+              </div>
+            )
+          ))}
+            
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-sm font-bold uppercase mb-2">Education</h2>
+          <div className="border-t  py-2">
+
+
+{educationData.map((edu, index) => (
+            edu.institute && (
+              <div key={index} className="mt-2">
+                <div className="flex justify-between text-sm">
+                  <p className="font-bold text-black">{edu.institute}</p>
+                </div>
+                <p className="text-sm text-black">{edu.quali}</p>
+                <p className="text-black mt-1">
+                  {edu.started} – {edu.check ? 'Present' : edu.finished}
+                </p>
+              </div>
+            )
+          ))}
+
+          </div>
+        </section>
+     
+        <section>
+          <h2 className="text-sm font-bold mb-2 uppercase text-black">Skills</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          <ul className="list-disc pl-4 mt-2">
+            {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+              .filter(skill => skill)
+              .map((skill, index) => (
+                <li key={index} className="text-black">{skill}</li>
+              ))}
+          </ul>
+        </section>
+  
+        <section>
+          <h2 className="text-sm font-bold uppercase mb-2">References</h2>
+          <div className="border-t py-2">
+          {refereesData.map((ref, index) => (
+            ref.refereesname && (
+              <div key={index} className="text-sm mt-2">
+                <p className="font-bold text-black">{ref.refereesname}</p>
+                <p className="text-black">{ref.refereesposition}</p>
+                <p className="text-black">{ref.refereesorg}</p>
+                <p className="text-black">{ref.refereescontact}</p>
+              </div>
+            )
+          ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
+
+  const Template3 = () => (
+    <div id="template-to-print" className="w-[21cm] min-h-[29.7cm] p-8 bg-white text-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+
+
+<div className="mb-6">
+        <h1 className="text-2xl font-bold mb-1 text-black">{formData.firstname} {formData.lastname}</h1>
+        <div className="text-sm space-y-1">
+          <p className="text-black">Email: {formData.email}</p>
+          <p className="text-black">Phone: {formData.phone}</p>
+          <p className="text-black">Address: {formData.address}</p>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-black mb-3 uppercase">Objective</h2>
+          <p className="text-sm text-black leading-relaxed">{formData.about}</p>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-black mb-3 uppercase">Professional Experience</h2>
+          {experienceData.map((exp, index) => (
+            exp.Organization && (
+              <div key={index} className="mt-2">
+                <div className="flex justify-between text-sm">
+                  <p className="font-bold text-black">{exp.Organization}</p>
+                </div>
+                <p className="text-sm  text-black">{exp.position}</p>
+                <p className="text-black mt-1">{exp.from} – {exp.to}</p>
+              </div>
+            )
+          ))}
+        </section>
+
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-black mb-3 uppercase">Education</h2>
+          {educationData.map((edu, index) => (
+            edu.institute && (
+              <div key={index} className="mt-2">
+                <div className="flex justify-between text-sm">
+                  <p className="font-bold text-black">{edu.institute}</p>
+                </div>
+                <p className="text-sm text-black">{edu.quali}</p>
+                <p className="text-black mt-1">
+                  {edu.started} – {edu.check ? 'Present' : edu.finished}
+                </p>
+              </div>
+            )
+          ))}
+
+        </section>
+
+        <section>
+          <h2 className="text-base font-bold text-black mb-3 uppercase">Skills</h2>
+          <div className="bg-gray-700 mt-1 h-[0.60px] w-full"></div>
+          <ul className="list-disc pl-4 mt-2">
+            {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+              .filter(skill => skill)
+              .map((skill, index) => (
+                <li key={index} className="text-black">{skill}</li>
+              ))}
+          </ul>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-black mb-3 uppercase">References</h2>
+          {refereesData.map((ref, index) => (
+            ref.refereesname && (
+              <div key={index} className="text-sm mt-2">
+                <p className="font-bold text-black">{ref.refereesname}</p>
+                <p className="text-black">{ref.refereesposition}</p>
+                <p className="text-black">{ref.refereesorg}</p>
+                <p className="text-black">{ref.refereescontact}</p>
+              </div>
+            )
+          ))}
+        </section>
+      </div>
+    </div>
+  );
+
+
+
+
+
+  const templates = {
+    1: Template1,
+    2: Template2,
+    3: Template3
+  };
+
+  const SelectedTemplate = templates[selectedTemplate];
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-black bg-opacity-50">
-      <div className="relative w-full max-w-7xl bg-white rounded-lg shadow-lg">
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl md:text-2xl font-semibold">Choose a template</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 bg-black bg-opacity-50">
+      <div className="relative w-full max-w-7xl bg-white rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 z-10 bg-white flex items-center justify-between p-4 border-b">
+          <h2 className="text-xl font-semibold">Choose a template</h2>
           <button 
             onClick={onClose}
             className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-            aria-label="Close"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -238,30 +712,31 @@ const GeneratedResume = ({ showTemplate, formData, onClose, onSelectTemplate }) 
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {[1, 2, 3].map((templateNum) => (
+          {Object.keys(templates).map((templateNum) => (
             <div 
               key={templateNum}
-              className={`relative cursor-pointer transition-all hover:scale-105 ${
-                selectedTemplate === templateNum ? '' : ''
-              }`}
-              onClick={() => handleTemplateSelect(templateNum)}
+              className="relative cursor-pointer transition-all hover:scale-105 border border-gray-200"
+              onClick={() => handleTemplateSelect(Number(templateNum))}
             >
-              {selectedTemplate === templateNum && (
-                <div className="absolute top-2 right-2 bg-purple-500 rounded-full p-1 z-10">
+              {selectedTemplate === Number(templateNum) && (
+                <div className="absolute top-2 right-2 bg-gray-500 rounded-full p-1 z-10">
                   <Check className="w-4 h-4 text-white" />
                 </div>
               )}
-              {resumeTemplates[`Template${templateNum}`]()}
+              <div ref={Number(templateNum) === selectedTemplate ? templateRef : null}>
+                {templates[templateNum]()}
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="flex justify-center items-center p-4 border-t">
+        <div className="sticky bottom-0 z-10 bg-white flex justify-center items-center gap-4 p-4 border-t">
           <button 
-            onClick={() => onSelectTemplate(selectedTemplate)}
-            className="bg-purple-500 hover:bg-purple-600 text-white text-lg font-medium px-8 py-3 rounded-md transition-colors"
+            onClick={handleDownloadPDF}
+            disabled={isDownloading}
+            className="bg-gray-800 hover:bg-gray-900 text-white text-lg font-medium px-8 py-3 rounded-md transition-colors disabled:bg-gray-300"
           >
-            Continue with Template {selectedTemplate}
+            {isDownloading ? 'Generating PDF...' : 'Download PDF'}
           </button>
         </div>
       </div>
