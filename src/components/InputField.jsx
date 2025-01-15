@@ -37,7 +37,7 @@ const InputField = ({
         onChange={onChange}
         placeholder={placeholder}
         className="border rounded-md p-2 outline-none bg-slate-50 w-full"
-        required
+        // required
       />
     )}
   </div>

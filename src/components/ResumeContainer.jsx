@@ -3,8 +3,10 @@
 "use client";
 import { Plus, Trash2 } from "lucide-react";
 import React, { useState } from "react";
-import GeneratedResume from "./GeneratedResume";
 import InputField from "./InputField";
+// import GeneratedResume from "@/app/resumetemplate/page";
+import Link from "next/link";
+import GeneratedResume from "./GeneratedResume";
 
 const ResumeContainer = () => {
   const [formData, setFormData] = useState({
@@ -249,66 +251,6 @@ const ResumeContainer = () => {
           />
 
           <hr className="w-full h-1" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-            <InputField
-              label="Date of birth"
-              name="birth"
-              type="date"
-              value={formData.birth}
-              onChange={handleInputChange}
-            />
-            <InputField
-              label="State of Origin"
-              name="origin"
-              placeholder="e.g lagos"
-              value={formData.origin}
-              onChange={handleInputChange}
-            />
-            <InputField
-              label="LGA"
-              name="local"
-              placeholder="e.g Badagry"
-              value={formData.local}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-            <InputField
-              label="Gender"
-              name="gender"
-              type="select"
-              value={formData.gender}
-              onChange={handleInputChange}
-              options={[
-                { value: "Male", label: "Male" },
-                { value: "Female", label: "Female" },
-              ]}
-            />
-            <InputField
-              label="Marital Status"
-              name="status"
-              type="select"
-              value={formData.status}
-              onChange={handleInputChange}
-              options={[
-                { value: "Married", label: "Married" },
-                { value: "Single", label: "Single" },
-              ]}
-            />
-            <InputField
-              label="Religion"
-              name="religion"
-              type="select"
-              value={formData.religion}
-              onChange={handleInputChange}
-              options={[
-                { value: "Islam", label: "Islam" },
-                { value: "Christianity", label: "Christianity" },
-              ]}
-            />
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             <InputField
@@ -739,6 +681,21 @@ const ResumeContainer = () => {
           onClose={() => setShowTemplate(false)}
         />
       </div>
+
+
+{/* <div className="">
+  <Link href="/resumetemplate">
+        <GeneratedResume
+          showTemplate={showTemplate}
+          formData={formData}
+          educationData={[mainEducation, ...educationList]}
+          experienceData={[mainExperience, ...experienceList]}
+          refereesData={[mainReferee, ...refereesList]}
+          onClose={() => setShowTemplate(false)}
+        />
+        </Link>
+      </div> */}
+
     </div>
   );
 };
