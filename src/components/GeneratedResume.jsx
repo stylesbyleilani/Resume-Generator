@@ -1188,149 +1188,79 @@ const Template1PDF = ({ formData, educationData, experienceData, refereesData })
 );
 
 
-const Template2PDF = ({ formData, educationData, experienceData, refereesData }) => (
-  // <Document>
-  //   <Page size="A4" style={styles.page}>
-  //     <View style={styles.header}>
-  //       <Text style={styles.template2SectionTitle}>{formData.firstname} {formData.lastname}</Text>
-  //       <Text style={styles.contactInfo}>Email: {formData.email}</Text>
-  //       <Text style={styles.contactInfo}>Phone: {formData.phone}</Text>
-  //       <Text style={styles.contactInfo}>Address: {formData.address}</Text>
-  //     </View>
+// const Template2PDF = ({ formData, educationData, experienceData, refereesData }) => (
+  
 
-  //     <View style={styles.section}>
-  //       <Text style={styles.template2SectionTitle}>Summary</Text>
-  //       <Text style={styles.sectionContent}>{formData.about}</Text>
-  //     </View>
+// <Document>
+//     <Page size="A4" style={styles.page}>
+//       <View style={styles.header}>
+//         <Text style={styles.template2Name}>{formData.firstname} {formData.lastname}</Text>
+//         <Text style={styles.contactInfo}>Email: {formData.email}</Text>
+//         <Text style={styles.contactInfo}>Phone: {formData.phone}</Text>
+//         <Text style={styles.contactInfo}>Address: {formData.address}</Text>
+//       </View>
 
-  //     <View style={styles.section}>
-  //       <Text style={styles.sectionTitle}>Experience</Text>
-  //       {experienceData.map((exp, index) => (
-  //         exp.Organization && (
-  //           <View key={index} style={styles.sectionContent}>
-  //             <Text>{exp.Organization}</Text>
-  //             <Text>{exp.position}</Text>
-  //             <Text>{exp.from} – {exp.to}</Text>
-  //           </View>
-  //         )
-  //       ))}
-  //     </View>
+//       <View style={styles.template2Section}>
+//         <Text style={styles.template2SectionTitle}>Summary</Text>
+//         <Text style={styles.sectionContent}>{formData.about}</Text>
+//       </View>
 
-  //     <View style={styles.section}>
-  //      <Text style={styles.sectionTitle}>Education</Text>
-  //       {educationData.map((edu, index) => (
-  //         edu.institute && (
-  //          <View key={index} style={styles.experienceItem}>
-  //              <Text style={styles.education}>{edu.institute}</Text>
-  //             <Text style={styles.education}>{edu.quali}</Text>
-  //             <Text style={styles.education}>
-  //                {edu.started} – {edu.check ? 'Present' : edu.finished}
-  //              </Text>
-  //            </View>
-  //          )
-  //        ))}
-  //      </View>
+//       <View style={styles.template2Section}>
+//         <Text style={styles.template2SectionTitle}>Experience</Text>
+//         {experienceData.map((exp, index) => (
+//           exp.Organization && (
+//             <View key={index} style={styles.sectionContent}>
+//               <Text style={styles.template2Organization}>{exp.Organization}</Text>
+//               <Text style={styles.template2Position}>{exp.position}</Text>
+//               <Text style={styles.template2Date}>{exp.from} – {exp.to}</Text>
+//             </View>
+//           )
+//         ))}
+//       </View>
 
-  //     <View style={styles.section}>
-  //       <Text style={styles.sectionTitle}>Skills</Text>
-  //       <View style={styles.skillsList}>
-  //          {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
-  //           .filter(skill => skill)
-  //           .map((skill, index) => (
-  //              <Text key={index} style={styles.skills}>• {skill}</Text>
-  //           ))}
-  //       </View>
-  //      </View>
+//       <View style={styles.template2Section}>
+//         <Text style={styles.template2SectionTitle}>Education</Text>
+//         {educationData.map((edu, index) => (
+//           edu.institute && (
+//             <View key={index} style={styles.sectionContent}>
+//               <Text style={styles.template2Organization}>{edu.institute}</Text>
+//               <Text style={styles.template2Position}>{edu.quali}</Text>
+//               <Text style={styles.template2Date}>
+//                 {edu.started} – {edu.check ? 'Present' : edu.finished}
+//               </Text>
+//             </View>
+//           )
+//         ))}
+//       </View>
 
-  //     <View style={styles.section}>
-  //       <Text style={styles.sectionTitle}>References</Text>
-  //        {refereesData.map((ref, index) => (
-  //          ref.refereesname && (
-  //            <View key={index} style={styles.experienceItem}>
-  //              <Text style={styles.companyName}>{ref.reference}</Text>
-  //             <Text style={styles.position}>{ref.reference}</Text>
-  //             <Text style={styles.sectionContent}>{ref.refereesorg}</Text>
-  //              <Text style={styles.sectionContent}>{ref.refereescontact}</Text>
-  //            </View>
-  //          )
-  //       ))}
-  //      </View>
+//       <View style={styles.template2Section}>
+//         <Text style={styles.template2SectionTitle}>Skills</Text>
+//         {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+//           .filter(skill => skill)
+//           .map((skill, index) => (
+//             <Text key={index} style={styles.template2SkillItem}>• {skill}</Text>
+//           ))}
+//       </View>
 
-  //     {/* Similar sections for Education, Skills, and References */}
-  //   </Page>
-  // </Document>
-
-
-<Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.header}>
-        <Text style={styles.template2Name}>{formData.firstname} {formData.lastname}</Text>
-        <Text style={styles.contactInfo}>Email: {formData.email}</Text>
-        <Text style={styles.contactInfo}>Phone: {formData.phone}</Text>
-        <Text style={styles.contactInfo}>Address: {formData.address}</Text>
-      </View>
-
-      <View style={styles.template2Section}>
-        <Text style={styles.template2SectionTitle}>Summary</Text>
-        <Text style={styles.sectionContent}>{formData.about}</Text>
-      </View>
-
-      <View style={styles.template2Section}>
-        <Text style={styles.template2SectionTitle}>Experience</Text>
-        {experienceData.map((exp, index) => (
-          exp.Organization && (
-            <View key={index} style={styles.sectionContent}>
-              <Text style={styles.template2Organization}>{exp.Organization}</Text>
-              <Text style={styles.template2Position}>{exp.position}</Text>
-              <Text style={styles.template2Date}>{exp.from} – {exp.to}</Text>
-            </View>
-          )
-        ))}
-      </View>
-
-      <View style={styles.template2Section}>
-        <Text style={styles.template2SectionTitle}>Education</Text>
-        {educationData.map((edu, index) => (
-          edu.institute && (
-            <View key={index} style={styles.sectionContent}>
-              <Text style={styles.template2Organization}>{edu.institute}</Text>
-              <Text style={styles.template2Position}>{edu.quali}</Text>
-              <Text style={styles.template2Date}>
-                {edu.started} – {edu.check ? 'Present' : edu.finished}
-              </Text>
-            </View>
-          )
-        ))}
-      </View>
-
-      <View style={styles.template2Section}>
-        <Text style={styles.template2SectionTitle}>Skills</Text>
-        {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
-          .filter(skill => skill)
-          .map((skill, index) => (
-            <Text key={index} style={styles.template2SkillItem}>• {skill}</Text>
-          ))}
-      </View>
-
-      <View style={styles.template2Section}>
-        <Text style={styles.template2SectionTitle}>References</Text>
-        {refereesData.map((ref, index) => (
-          ref.refereesname && (
-            <View key={index} style={styles.sectionContent}>
-              <Text style={styles.template2Organization}>{ref.refereesname}</Text>
-              <Text style={styles.template2Position}>{ref.refereesposition}</Text>
-              <Text style={styles.template2Position}>{ref.refereesorg}</Text>
-              <Text style={styles.template2Position}>{ref.refereescontact}</Text>
-            </View>
-          )
-        ))}
-      </View>
-    </Page>
-  </Document>
+//       <View style={styles.template2Section}>
+//         <Text style={styles.template2SectionTitle}>References</Text>
+//         {refereesData.map((ref, index) => (
+//           ref.refereesname && (
+//             <View key={index} style={styles.sectionContent}>
+//               <Text style={styles.template2Organization}>{ref.refereesname}</Text>
+//               <Text style={styles.template2Position}>{ref.refereesposition}</Text>
+//               <Text style={styles.template2Position}>{ref.refereesorg}</Text>
+//               <Text style={styles.template2Position}>{ref.refereescontact}</Text>
+//             </View>
+//           )
+//         ))}
+//       </View>
+//     </Page>
+//   </Document>
 
 
 
-);
+// );
 
 // Preview Components (HTML/JSX)
 const Template1Preview = ({ formData, educationData, experienceData, refereesData }) => (
@@ -1431,162 +1361,162 @@ const Template1Preview = ({ formData, educationData, experienceData, refereesDat
   </div>
 );
 
-const Template2Preview = ({ formData, educationData, experienceData, refereesData }) => (
-  <div className="w-full min-h-[600px] p-8 mt-3 md:mt-0 bg-white">
+// const Template2Preview = ({ formData, educationData, experienceData, refereesData }) => (
+//   <div className="w-full min-h-[600px] p-8 mt-3 md:mt-0 bg-white">
 
 
-<div className="border-l-4 border-blue-600 pl-4 mb-6">
-      <h1 className="text-3xl font-bold text-blue-600">{formData.firstname} {formData.lastname}</h1>
-      <h1 className="text-xl font-bold mb-1 text-blue-600">{formData.job} </h1>
+// <div className="border-l-4 border-blue-600 pl-4 mb-6">
+//       <h1 className="text-3xl font-bold text-blue-600">{formData.firstname} {formData.lastname}</h1>
+//       <h1 className="text-xl font-bold mb-1 text-blue-600">{formData.job} </h1>
 
-      <div className="text-sm mt-2">
-        <p className="text-gray-600">{formData.email} • {formData.phone}</p>
-        <p className="text-gray-600">{formData.address}</p>
-      </div>
-    </div>
+//       <div className="text-sm mt-2">
+//         <p className="text-gray-600">{formData.email} • {formData.phone}</p>
+//         <p className="text-gray-600">{formData.address}</p>
+//       </div>
+//     </div>
 
-    <div className="space-y-6">
-      <section>
-        <h2 className="text-xl font-semibold text-blue-600 mb-3">Professional Summary</h2>
-        <p className="text-gray-700">{formData.about}</p>
-      </section>
+//     <div className="space-y-6">
+//       <section>
+//         <h2 className="text-xl font-semibold text-blue-600 mb-3">Professional Summary</h2>
+//         <p className="text-gray-700">{formData.about}</p>
+//       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold text-blue-600 mb-3">Experience</h2>
-        {experienceData.map((exp, index) => (
-          exp.Organization && (
-            <div key={index} className="mb-4">
-              <h3 className="font-bold text-gray-800">{exp.Organization}</h3>
-              <p className="text-gray-700">{exp.position}</p>
-              <p className="text-gray-600 text-sm">{exp.from} – {exp.to}</p>
-            </div>
-          )
-        ))}
-      </section>
+//       <section>
+//         <h2 className="text-xl font-semibold text-blue-600 mb-3">Experience</h2>
+//         {experienceData.map((exp, index) => (
+//           exp.Organization && (
+//             <div key={index} className="mb-4">
+//               <h3 className="font-bold text-gray-800">{exp.Organization}</h3>
+//               <p className="text-gray-700">{exp.position}</p>
+//               <p className="text-gray-600 text-sm">{exp.from} – {exp.to}</p>
+//             </div>
+//           )
+//         ))}
+//       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold text-blue-600 mb-3">Education</h2>
-        {educationData.map((edu, index) => (
-          edu.institute && (
-            <div key={index} className="mb-4">
-              <h3 className="font-bold text-gray-800">{edu.institute}</h3>
-              <p className="text-gray-700">{edu.quali}</p>
-              <p className="text-gray-600 text-sm">
-                {edu.started} – {edu.check ? 'Present' : edu.finished}
-              </p>
-            </div>
-          )
-        ))}
-      </section>
+//       <section>
+//         <h2 className="text-xl font-semibold text-blue-600 mb-3">Education</h2>
+//         {educationData.map((edu, index) => (
+//           edu.institute && (
+//             <div key={index} className="mb-4">
+//               <h3 className="font-bold text-gray-800">{edu.institute}</h3>
+//               <p className="text-gray-700">{edu.quali}</p>
+//               <p className="text-gray-600 text-sm">
+//                 {edu.started} – {edu.check ? 'Present' : edu.finished}
+//               </p>
+//             </div>
+//           )
+//         ))}
+//       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold text-blue-600 mb-3">Skills</h2>
-        <div className="grid grid-cols-2 gap-2">
-          {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
-            .filter(skill => skill)
-            .map((skill, index) => (
-              <div key={index} className="bg-blue-50 p-2 rounded text-gray-700">{skill}</div>
-            ))}
-        </div>
-      </section>
-    </div>
-
-
-  </div>
-);
-
-const Template3Preview = ({ formData, educationData, experienceData, refereesData }) => (
+//       <section>
+//         <h2 className="text-xl font-semibold text-blue-600 mb-3">Skills</h2>
+//         <div className="grid grid-cols-2 gap-2">
+//           {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+//             .filter(skill => skill)
+//             .map((skill, index) => (
+//               <div key={index} className="bg-blue-50 p-2 rounded text-gray-700">{skill}</div>
+//             ))}
+//         </div>
+//       </section>
+//     </div>
 
 
+//   </div>
+// );
 
-<div className="w-full min-h-[600px] p-8 bg-white" style={{ fontFamily: 'Times New Roman, serif' }}>
-<div className="text-start mb-8 pb-4">
-  <h1 className="text-3xl font-bold mb-2">{formData.firstname} {formData.lastname}</h1>
-  <h1 className="text-xl font-bold mb-1 text-black">{formData.job} </h1>
-
-  <div className="text-sm">
-    <p>{formData.email} | {formData.phone}</p>
-    <p>{formData.address}</p>
-  </div>
-</div>
-
-<div className="space-y-6">
-  <section>
-    <h2 className="text-xl font-bold  mb-3">Professional Summary</h2>
-    <p className="text-justify">{formData.about}</p>
-  </section>
-
-  <section>
-    <h2 className="text-xl font-bold  mb-3">Professional Experience</h2>
-    {experienceData.map((exp, index) => (
-      exp.Organization && (
-        <div key={index} className="mb-4">
-          <div className="flex justify-between">
-            <h3 className="font-bold">{exp.Organization}</h3>
-            <span>{exp.from} – {exp.to}</span>
-          </div>
-          <p className="italic">{exp.position}</p>
-        </div>
-      )
-    ))}
-  </section>
-
-  <section>
-    <h2 className="text-xl font-bold  mb-3">Education</h2>
-    {educationData.map((edu, index) => (
-      edu.institute && (
-        <div key={index} className="mb-4">
-          <div className="flex justify-between">
-            <h3 className="font-bold">{edu.institute}</h3>
-            <span>{edu.started} – {edu.check ? 'Present' : edu.finished}</span>
-          </div>
-          <p className="italic">{edu.quali}</p>
-        </div>
-      )
-    ))}
-  </section>
-
-  <section className="w-full">
-        <h2 className="text-lg font-bold mb-2 text-black">Skills</h2>
-        <div className="w-full max-w-full">
-        </div>
-        <ul className="list-disc pl-4 mt-2">
-          {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
-            .filter(skill => skill)
-            .map((skill, index) => (
-              <li key={index} className="text-black">{skill}</li>
-            ))}
-        </ul>
-      </section>
-
-      <section className="w-full">
-        <h2 className="text-lg font-bold mb-2 text-black">References</h2>
-
-        {refereesData.map((ref, index) => (
-          ref.refereesname && (
-            <div key={index} className="text-sm mt-2">
-              <p className="font-medium text-black">{ref.refereesname}</p>
-              <p className="text-black">{ref.refereesposition}</p>
-              <p className="text-black">{ref.refereesorg}</p>
-              <p className="text-black">{ref.refereescontact}</p>
-            </div>
-          )
-        ))}
-      </section>
-</div>
-</div>
+// const Template3Preview = ({ formData, educationData, experienceData, refereesData }) => (
 
 
 
-);
+// <div className="w-full min-h-[600px] p-8 bg-white" style={{ fontFamily: 'Times New Roman, serif' }}>
+// <div className="text-start mb-8 pb-4">
+//   <h1 className="text-3xl font-bold mb-2">{formData.firstname} {formData.lastname}</h1>
+//   <h1 className="text-xl font-bold mb-1 text-black">{formData.job} </h1>
+
+//   <div className="text-sm">
+//     <p>{formData.email} | {formData.phone}</p>
+//     <p>{formData.address}</p>
+//   </div>
+// </div>
+
+// <div className="space-y-6">
+//   <section>
+//     <h2 className="text-xl font-bold  mb-3">Professional Summary</h2>
+//     <p className="text-justify">{formData.about}</p>
+//   </section>
+
+//   <section>
+//     <h2 className="text-xl font-bold  mb-3">Professional Experience</h2>
+//     {experienceData.map((exp, index) => (
+//       exp.Organization && (
+//         <div key={index} className="mb-4">
+//           <div className="flex justify-between">
+//             <h3 className="font-bold">{exp.Organization}</h3>
+//             <span>{exp.from} – {exp.to}</span>
+//           </div>
+//           <p className="italic">{exp.position}</p>
+//         </div>
+//       )
+//     ))}
+//   </section>
+
+//   <section>
+//     <h2 className="text-xl font-bold  mb-3">Education</h2>
+//     {educationData.map((edu, index) => (
+//       edu.institute && (
+//         <div key={index} className="mb-4">
+//           <div className="flex justify-between">
+//             <h3 className="font-bold">{edu.institute}</h3>
+//             <span>{edu.started} – {edu.check ? 'Present' : edu.finished}</span>
+//           </div>
+//           <p className="italic">{edu.quali}</p>
+//         </div>
+//       )
+//     ))}
+//   </section>
+
+//   <section className="w-full">
+//         <h2 className="text-lg font-bold mb-2 text-black">Skills</h2>
+//         <div className="w-full max-w-full">
+//         </div>
+//         <ul className="list-disc pl-4 mt-2">
+//           {[formData.skill, formData.skill2, formData.skill3, formData.skill4, formData.skill5]
+//             .filter(skill => skill)
+//             .map((skill, index) => (
+//               <li key={index} className="text-black">{skill}</li>
+//             ))}
+//         </ul>
+//       </section>
+
+//       <section className="w-full">
+//         <h2 className="text-lg font-bold mb-2 text-black">References</h2>
+
+//         {refereesData.map((ref, index) => (
+//           ref.refereesname && (
+//             <div key={index} className="text-sm mt-2">
+//               <p className="font-medium text-black">{ref.refereesname}</p>
+//               <p className="text-black">{ref.refereesposition}</p>
+//               <p className="text-black">{ref.refereesorg}</p>
+//               <p className="text-black">{ref.refereescontact}</p>
+//             </div>
+//           )
+//         ))}
+//       </section>
+// </div>
+// </div>
+
+
+
+// );
 
 // Map of templates with both preview and PDF components
 const templates = {
   1: { preview: Template1Preview, pdf: Template1PDF },
-  2: { preview: Template2Preview, pdf: Template1PDF },
+  // 2: { preview: Template2Preview, pdf: Template1PDF },
 
   // 2: { preview: Template2Preview, pdf: Template2PDF }, // Using Template1PDF as fallback
-  3: { preview: Template3Preview, pdf: Template1PDF }, // Using Template1PDF as fallback
+  // 3: { preview: Template3Preview, pdf: Template1PDF }, // Using Template1PDF as fallback
 };
 
 // Main component
@@ -1605,9 +1535,9 @@ const GeneratedResume = ({ showTemplate, formData, educationData, experienceData
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 bg-black bg-opacity-50">
-      <div className="relative w-full max-w-7xl bg-white rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 z-10 bg-white flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-semibold">Choose a template</h2>
+      <div className="relative w-[400px] max-w-6xl  bg-white rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 z-10 bg-purple-700 flex items-center justify-between p-4 border-b">
+          {/* <h2 className="text-xl font-semibold">Choose a template</h2> */}
           <button 
             onClick={onClose}
             className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -1618,7 +1548,7 @@ const GeneratedResume = ({ showTemplate, formData, educationData, experienceData
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1  p-6">
           {Object.keys(templates).map((templateNum) => (
             <div 
               key={templateNum}
